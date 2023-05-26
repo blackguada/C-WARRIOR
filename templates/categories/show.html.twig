@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+    <h1>Categories</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ category.titre }}</td>
+            </tr>
+            <tr>
+                <th>Descriptif</th>
+                <td>{{ category.descriptif }}</td>
+            </tr>
+             {% for produit in category.produits %}
+
+            <div class="col">
+                <div class="card">
+                
+                <img src="{{ asset('img/') ~ produit.imagename}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ produit.titre }}</h5>
+                    <p class="card-text">{{ produit.descriptif }}
+                    
+                    </p>
+                    <a href="{{ path('app_cart_add', {'id': produit.id}) }}">
+                    <button type="button" class="btn btn-primary">Ajouter au panier</button>
+                    </a>
+                    <a href="{{ path('app_detailproduits', {'id': produit.id}) }}">
+                      <button type="button" class="btn btn-primary">Detail</button>
+                    </a>
+                </div>
+                </div>
+            </div> 
+
+         {% endfor %}
+           
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_categories_index') }}">back to list</a>
+
+    <a href="{{ path('app_categories_edit', {'id': category.id}) }}">edit</a>
+
+    {{ include('categories/_delete_form.html.twig') }}
+{% endblock %}

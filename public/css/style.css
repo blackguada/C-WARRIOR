@@ -1,0 +1,14 @@
+@media screen and(max-width: 800px){
+    body{
+        overflow:scroll;
+        
+    }
+}
+body{
+    background: yellow;
+}
+.categorie{
+    display: flex;
+    justify-content: space-between;
+    margin: 100px;
+}
